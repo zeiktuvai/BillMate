@@ -1,0 +1,64 @@
+﻿<ContentDialog x:ConnectionId='1'
+    x:Class="Bill_Tracker.Dialog.addAccount"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bill_Tracker.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Add Account"
+    PrimaryButtonText="Add"
+    SecondaryButtonText="Cancel"
+                                                         
+                                                             >
+
+    <Grid Padding="10,20,0,0" Height="400">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="AUTO" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Name:" Style="{StaticResource dialogLabel}" />
+            <TextBlock Text="Date Opened:" Style="{StaticResource dialogLabel}" />
+            <TextBlock Text="Account Type:" Style="{StaticResource dialogLabel}"/>
+            <TextBlock Text="Monthly Payment:" Style="{StaticResource dialogLabel}" />
+            <TextBlock x:ConnectionId='16' Name="lblOpenBal" Text="Opening Balance:" Style="{StaticResource dialogLabel}"/>
+            <TextBlock x:ConnectionId='17' Name="lblCredLimit" Text="Credit Limit:" Style="{StaticResource dialogLabel}"/>
+            <TextBlock x:ConnectionId='18' Name="lblCurBal" Text="Current Balance:" Style="{StaticResource dialogLabel}"/>
+            <TextBlock Text="APR:" Style="{StaticResource dialogLabel}"/>
+            <TextBlock x:ConnectionId='19' Name="lblAssocBill" Text="Associated Bill:" Style="{StaticResource dialogLabel}" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <TextBox x:ConnectionId='2' x:Name="tbxAcctName" Style="{StaticResource dialogTextEntry}"                                         />
+            <DatePicker x:ConnectionId='3' Name="dteAcctOpen" Style="{StaticResource dateEntryBox}" />
+            <ComboBox x:ConnectionId='4' Name="cbxAcctType" PlaceholderText="Select Type..." Style="{StaticResource comboBoxEntry}"                                                >
+                <ComboBoxItem x:ConnectionId='14' Name="Credit" Content="Credit Card" />
+                <ComboBoxItem x:ConnectionId='15' Name="Loan" Content="Loan" />
+            </ComboBox>
+            <TextBox x:ConnectionId='5' Name="tbxMonthlyPay" Style="{StaticResource dialogTextEntry}"                                          />
+            <TextBox x:ConnectionId='6' x:Name="tbxOpenBal" Style="{StaticResource dialogTextEntry}"                                        />
+            <TextBox x:ConnectionId='7' Name="tbxCredLim" Style="{StaticResource dialogTextEntry}"                                        />
+            <TextBox x:ConnectionId='8' x:Name="tbxCurrBal" Style="{StaticResource dialogTextEntry}"                                        />
+            <TextBox x:ConnectionId='9' x:Name="tbxAPR" Style="{StaticResource dialogTextEntry}"                                    />
+            <RelativePanel x:ConnectionId='10' Name="assocPanel" Width="320" HorizontalAlignment="Left">
+                <TextBlock x:ConnectionId='11' Name="tbxAssocBill" Style="{StaticResource dialogLabel}" RelativePanel.AlignLeftWithPanel="True" Margin="18,0,0,0"/>
+                <Button x:ConnectionId='12' x:Name="bttnDelAssoc" Background="Transparent" Margin="0,5,0,0" RelativePanel.LeftOf="bttnEditAssoc"                           >
+                    <FontIcon Glyph="&#xE10A;"/>
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Remove Bill Association" />
+                    </ToolTipService.ToolTip>
+                </Button>
+                <Button x:ConnectionId='13' x:Name="bttnEditAssoc" Background="Transparent" Margin="0,5,0,0" RelativePanel.AlignRightWithPanel="True"                            >
+                    <FontIcon Glyph="&#xE104;"/>
+                    <ToolTipService.ToolTip>
+                        <ToolTip Content="Edit Bill Association" />
+                    </ToolTipService.ToolTip>
+                </Button>
+            </RelativePanel>
+        </StackPanel>
+        
+    </Grid>
+</ContentDialog>
+

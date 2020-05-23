@@ -1,0 +1,2 @@
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\Bill Tracker\BillMate.csproj;x86
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\BillMate.Services.Data\BillMate.Services.Data.csproj;x86

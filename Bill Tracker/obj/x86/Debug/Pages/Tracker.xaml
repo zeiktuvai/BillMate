@@ -1,0 +1,314 @@
+﻿<Page
+    x:Class="Bill_Tracker.Tracker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bill_Tracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:visibilityBoolConv x:Key="boolConverter" />
+        <local:StringFormatConverter x:Key="StringFormat" />
+        <!--Use a collection view source for content that presents a list of items that can be grouped or sorted.-->
+
+        <SwipeItems x:Key="AcctRight" Mode="Reveal">
+            <SwipeItem x:ConnectionId='25' Text="Expand" IconSource="{StaticResource ExpandIcon}" Background="#FF91B8EC" Foreground="White"                            />
+            <SwipeItem x:ConnectionId='26' Text="Transaction" IconSource="{StaticResource PlusIcon}" Background="#FF91B8EC" Foreground="White"                              />
+            <SwipeItem x:ConnectionId='27' Text="Edit" IconSource="{StaticResource EditIcon}" Background="#FF91B8EC" Foreground="White"                            />
+            <SwipeItem x:ConnectionId='28' Text="Delete" IconSource="{StaticResource DeleteIcon}" Background="#FF932F2F" Foreground="White"                           />
+        </SwipeItems>
+
+        <CollectionViewSource x:ConnectionId='2' x:Key="cvsTrans" x:Name="cvsTrans" IsSourceGrouped="False" />
+
+        <DataTemplate x:ConnectionId='3' x:Name="listLarge">
+            <SwipeControl RightItems="{StaticResource AcctRight}" Margin="0,5,0,5">
+                <Grid x:ConnectionId='16' Background="White" Width="600" MinHeight="100"                                                                                               >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="AUTO" />
+                    </Grid.RowDefinitions>
+                    <RelativePanel Background="{Binding Path=dispColor}" Padding="5,0,0,0">
+                        <TextBlock Text="{Binding Path=acctName}" Style="{StaticResource acctName}" RelativePanel.AlignLeftWithPanel="True"/>
+                        <TextBlock Text="{Binding Path=acctType}" RelativePanel.AlignRightWithPanel="True" Style="{StaticResource billCat}" Margin="0,0,10,5" RelativePanel.AlignBottomWithPanel="True"/>
+                    </RelativePanel>
+
+                    <RelativePanel Name="bttnPanel" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Horizontal" >
+                                <Button x:ConnectionId='22' Name="accGvAddClick"  Style="{StaticResource gridButton}"                            >
+                                    <FontIcon Glyph="&#xE109;" FontSize="14"/>
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip Content="Add Payment/Purchase" />
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                                <Button x:ConnectionId='23' Name="accGvDelClick" Style="{StaticResource gridButton}"                            >
+                                    <FontIcon Glyph="&#xE107;" FontSize="14"/>
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip Content="Delete Account" />
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                                <Button x:ConnectionId='24' Name="accGvEditClick"  Style="{StaticResource gridButton}"                             >
+                                    <FontIcon Glyph="&#xE104;" FontSize="14"/>
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip Content="Edit Account" />
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:ConnectionId='21' Name="accGvClose" Style="{StaticResource gridButton}"                         >
+                                    <FontIcon Glyph="&#xE73E;" FontSize="14"/>
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip Content="Mark account as paid in full" /> 
+                                    </ToolTipService.ToolTip>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </RelativePanel>
+
+                    <RelativePanel Grid.Row="1" Margin="5">
+                        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True">
+                            <controls:RadialProgressBar Grid.Column="2" Height="35" Width="35" Value="{Binding Path=_currPercentage}" Minimum="0" Maximum="100" Thickness="8" Outline="Gray" Foreground="{Binding Path=_radialColor}" Margin="0,0,5,0" />
+                            <StackPanel Width="90">
+                                <TextBlock Text="Balance:" Style="{StaticResource acctBal}" />
+                                <TextBlock Text="Principal:" Style="{StaticResource acctBal}" />
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=dispBal}" Style="{StaticResource acctData}" />
+                                <TextBlock Text="{Binding Path=_Limit}" Style="{StaticResource acctData}" />
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" RelativePanel.AlignRightWithPanel="True">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Rate" Style="{StaticResource acctBal}" HorizontalAlignment="Right"/>
+                                <TextBlock Text="Payment:" Style="{StaticResource acctBal}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" Width="100">
+                                <TextBlock Text="{Binding Path=APR}" Style="{StaticResource acctData}" />
+                                <TextBlock Text="{Binding Path=dispMonthly}" Style="{StaticResource acctData}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </RelativePanel>
+
+                    <controls:Expander x:ConnectionId='18' Grid.Row="2" Name="expdr" Header="Transactions" Background="LightGray" ExpandDirection="Down" IsExpanded="False"                              Visibility="Collapsed">
+                        <ListView Name="lstTrans" SelectionMode="Single" IsMultiSelectCheckBoxEnabled="False" Height="200" ItemsSource="{Binding Source={StaticResource cvsTrans}}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="AUTO" />
+                                            <ColumnDefinition Width="AUTO" />
+                                            <ColumnDefinition Width="90" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=ID}" Width="00" HorizontalAlignment="Left" />
+                                            <TextBlock Text="{Binding Path=_entDate}" Width="200" HorizontalAlignment="Left"  Foreground="Black"  Style="{StaticResource billCost}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=Desc}" HorizontalAlignment="Left" Width="250" Foreground="Black" Style="{StaticResource billCost}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal"  >
+                                            <TextBlock Text="{Binding Path=entryAmount}" Grid.Column="1" HorizontalAlignment="Right" Foreground="Black" Style="{StaticResource billCost}" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </controls:Expander>
+                </Grid>
+            </SwipeControl>
+        </DataTemplate>
+
+
+        <DataTemplate x:ConnectionId='4' x:Name="listSmall">
+            <SwipeControl RightItems="{StaticResource AcctRight}" Margin="0,5,0,5">
+                <Grid x:ConnectionId='6' Background="White" Width="470" MinHeight="100"                                                                                               >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="AUTO" />
+                    </Grid.RowDefinitions>
+                    <RelativePanel Background="{Binding Path=dispColor}" Padding="5,0,0,0">
+                        <TextBlock Text="{Binding Path=acctName}" Style="{StaticResource acctName}" RelativePanel.AlignLeftWithPanel="True"/>
+                        <TextBlock Text="{Binding Path=acctType}" RelativePanel.AlignRightWithPanel="True" Style="{StaticResource billCat}" Margin="0,0,10,5" RelativePanel.AlignBottomWithPanel="True"/>
+                    </RelativePanel>
+
+                    <RelativePanel Name="bttnPanel" Grid.Row="1" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="50,0,0,0">
+                        <StackPanel Orientation="Vertical" RelativePanel.AlignRightWithPanel="True">
+                        <StackPanel Orientation="Horizontal" >
+                            <Button x:ConnectionId='12' Name="accGvAddClick"  Style="{StaticResource gridButton}"                             Width="30">
+                                <FontIcon Glyph="&#xE109;" FontSize="14"/>
+                                <ToolTipService.ToolTip>
+                                    <ToolTip Content="Add Payment/Purchase" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                            <Button x:ConnectionId='13' Name="accGvDelClick" Style="{StaticResource gridButton}"                             Width="30">
+                                <FontIcon Glyph="&#xE107;" FontSize="14"/>
+                                <ToolTipService.ToolTip>
+                                    <ToolTip Content="Delete Account" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                            <Button x:ConnectionId='14' Name="accGvEditClick"  Style="{StaticResource gridButton}"                              Width="30">
+                                <FontIcon Glyph="&#xE104;" FontSize="14"/>
+                                <ToolTipService.ToolTip>
+                                    <ToolTip Content="Edit Account" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:ConnectionId='11' Name="accGvClose" Style="{StaticResource gridButton}"                          >
+                                <FontIcon Glyph="&#xE73E;" FontSize="14"/>
+                                <ToolTipService.ToolTip>
+                                    <ToolTip Content="Mark account as paid in full" />
+                                </ToolTipService.ToolTip>
+                            </Button>
+                        </StackPanel>
+                        </StackPanel>
+                    </RelativePanel>
+
+                    <RelativePanel Grid.Row="1" Margin="5">
+                        <StackPanel Orientation="Horizontal" RelativePanel.AlignLeftWithPanel="True">
+                            <controls:RadialProgressBar Grid.Column="2" Height="35" Width="35" Value="{Binding Path=_currPercentage}" Minimum="0" Maximum="100" Thickness="8" Outline="Gray" Foreground="{Binding Path=_radialColor}" Margin="0,0,5,0" />
+                            <StackPanel Width="90" Margin="0,2,0,0">
+                                <TextBlock Text="Balance:" Style="{StaticResource acctBal}" FontSize="14"/>
+                                <TextBlock Text="Principal:" Style="{StaticResource acctBal}" FontSize="14" />
+                            </StackPanel>
+                            <StackPanel Margin="0,2,0,0">
+                                <TextBlock Text="{Binding Path=dispBal}" Style="{StaticResource acctData}" FontSize="14"/>
+                                <TextBlock Text="{Binding Path=_Limit}" Style="{StaticResource acctData}" FontSize="14" />
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal" RelativePanel.AlignRightWithPanel="True" Margin="0,2,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Rate" Style="{StaticResource acctBal}" HorizontalAlignment="Right" FontSize="14"/>
+                                <TextBlock Text="Payment:" Style="{StaticResource acctBal}" FontSize="14"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" Width="70">
+                                <TextBlock Text="{Binding Path=APR}" Style="{StaticResource acctData}" FontSize="14"/>
+                                <TextBlock Text="{Binding Path=dispMonthly}" Style="{StaticResource acctData}" FontSize="14"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </RelativePanel>
+
+                    <controls:Expander x:ConnectionId='8' Grid.Row="2" Name="expdr" Header="Transactions" Background="LightGray" ExpandDirection="Down" IsExpanded="False"                              Visibility="Collapsed">
+                        <ListView Name="lstTrans" SelectionMode="Single" IsMultiSelectCheckBoxEnabled="False" Height="200" ItemsSource="{Binding Source={StaticResource cvsTrans}}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="110" />
+                                            <ColumnDefinition Width="280" />
+                                            <ColumnDefinition Width="70" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=ID}" Width="00" HorizontalAlignment="Left" />
+                                            <TextBlock Text="{Binding Path=_entDate}" HorizontalAlignment="Left"  Foreground="Black"  Style="{StaticResource billCost}" FontSize="14"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Path=Desc}" HorizontalAlignment="Left" Foreground="Black" Style="{StaticResource billCost}" FontSize="14"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal"  >
+                                            <TextBlock Text="{Binding Path=entryAmount}" Grid.Column="1" HorizontalAlignment="Right" Foreground="Black" Style="{StaticResource billCost}" FontSize="14"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </controls:Expander>
+                </Grid>
+            </SwipeControl>
+        </DataTemplate>
+    </Page.Resources>
+
+
+    <Grid Background="{StaticResource MainBackgrnd}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:ConnectionId='29' x:Name="VisualStateGroup">
+            <VisualState x:ConnectionId='30' x:Name="VisualStatePhone">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="0"/>
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                        <Setter Target="gvAcct.ItemTemplate" Value="{StaticResource ResourceKey=listSmall}" />
+                        <Setter Target="lblAcctCnt.Margin" Value="10,0,20,0" />
+                        <Setter Target="icnTotal.Margin" Value="20,0,10,0" />
+                        <Setter Target="radCred.Margin" Value="10,0,20,0" />
+                        <Setter Target="icnPay.Margin" Value="20,3,10,0" />
+                    </VisualState.Setters>
+            </VisualState>
+            <VisualState x:ConnectionId='31' x:Name="VisualStateTablet">
+                <VisualState.StateTriggers>
+                    <AdaptiveTrigger MinWindowWidth="850" />
+                </VisualState.StateTriggers>
+                <VisualState.Setters>
+                        <Setter Target="gvAcct.ItemTemplate" Value="{StaticResource ResourceKey=listLarge}" />
+                        <Setter Target="lblAcctCnt.Margin" Value="10,0,50,0" />
+                        <Setter Target="icnTotal.Margin" Value="50,0,10,0" />
+                        <Setter Target="radCred.Margin" Value="10,0,50,0" />
+                        <Setter Target="icnPay.Margin" Value="50,3,10,0" />
+                    </VisualState.Setters>
+            </VisualState>
+        </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+
+        <StackPanel Orientation="Vertical">
+            <RelativePanel Background="#FF6891C7" Height="70">
+                <!--<TextBlock Name="lblTitle" Text="Accounts" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="15,10,10,0" FontSize="32" />-->                
+                <Button x:ConnectionId='43' Name="bttnAdd" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" Content="&#xE109;" Style="{StaticResource topBttn}" Margin="0,0,10,10" Background="#FF6891C7"                       />                
+            </RelativePanel>
+            <RelativePanel x:ConnectionId='34' Name="relIcon" Height="50" Background="#FF3E3E3E">
+                <StackPanel x:ConnectionId='35' Name="stckIcons" Orientation="Horizontal" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE9D2;" Style="{StaticResource InfoPanelItem}">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Number of Accounts" />
+                        </ToolTipService.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='36' Name="lblAcctCnt" Text="15" Style="{StaticResource InfoPanelItem}" Margin="10,0,50,0"/>
+                    <Line x:ConnectionId='37' Name="line" Style="{StaticResource InfoPanelLine}"/>
+                    <TextBlock x:ConnectionId='38' Name="icnTotal" FontFamily="Symbol" Text="&#xE5;" Margin="50,0,10,0" Style="{StaticResource InfoPanelItem}">
+                        <ToolTipService.ToolTip>
+                           <ToolTip Content="Total of all Accounts" />
+                        </ToolTipService.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='39' Name="lblTotal" Text="$34" Style="{StaticResource InfoPanelItem}" Margin="10,0,10,0"/>
+                    <controls:RadialProgressBar x:ConnectionId='40' Name="radCred" Height="25" Width="25" Value="50" Minimum="0" Maximum="100" Thickness="7" Outline="White" Foreground="Blue" Margin="10,0,50,0" >
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Combined debt versus total principal" />
+                        </ToolTipService.ToolTip>
+                    </controls:RadialProgressBar>
+
+                    <Line Style="{StaticResource InfoPanelLine}"/>
+                    <TextBlock x:ConnectionId='41' Name="icnPay" FontFamily="Segoe MDL2 Assets" Text="&#xE163;" Margin="50,3,10,0" Style="{StaticResource InfoPanelItem}">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Total Monthly Payments" />
+                        </ToolTipService.ToolTip>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='42' Name="lblPaid" Text="$34" Style="{StaticResource InfoPanelItem}" Margin="10,0,50,0"/>                    
+                </StackPanel>
+            </RelativePanel>
+
+        </StackPanel>
+
+
+        <StackPanel x:ConnectionId='32' Name="stkNoItems" Grid.Row="1" Width="400" Height="200" Padding="0,60,0,0" Visibility="Collapsed">
+            <TextBlock Text="There are no accounts, click the + icon to add an account." TextWrapping="WrapWholeWords" Width="390" FontSize="28" TextAlignment="Center" HorizontalAlignment="Center" />
+        </StackPanel>
+                
+        <ListView x:ConnectionId='33' Grid.Row="1" Name="gvAcct" Background="{StaticResource MainBackgrnd}" ItemTemplate="{StaticResource listLarge}" SelectionMode="None" HorizontalAlignment="Center" />
+
+    </Grid>
+</Page>
+

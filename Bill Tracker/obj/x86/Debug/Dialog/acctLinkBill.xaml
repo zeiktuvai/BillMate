@@ -1,0 +1,24 @@
+﻿<ContentDialog x:ConnectionId='1'
+    x:Class="Bill_Tracker.Dialog.acctLinkBill"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Bill_Tracker.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Link Bill"
+    PrimaryButtonText="Yes"
+    SecondaryButtonText="No"
+                                                         
+                                                             >
+
+    <Grid>
+        <StackPanel>
+            <TextBlock x:ConnectionId='2' Name="lblLinkText" Text="We found several bills that look like they would" TextWrapping="WrapWholeWords" TextAlignment="Center" Margin="0,10,0,5"/>
+            <ComboBox x:ConnectionId='3' Name="cbxBills" PlaceholderText="Select a Bill..." HorizontalAlignment="Center"                                              />
+            <TextBlock Text="Linking your bill will allow payments made on that bill to reduce the owed balance for this account automatically." TextWrapping="Wrap" Width="290" FontSize="11" 
+                       Margin="0,15,0,0"/>
+        </StackPanel>
+    </Grid>
+</ContentDialog>
+

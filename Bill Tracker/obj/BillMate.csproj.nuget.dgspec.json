@@ -1,0 +1,280 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\Bill Tracker\\BillMate.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\Bill Tracker\\BillMate.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\Bill Tracker\\BillMate.csproj",
+        "projectName": "BillMate",
+        "projectPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\Bill Tracker\\BillMate.csproj",
+        "packagesPath": "C:\\Users\\zeiktuvai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\Bill Tracker\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\zeiktuvai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "uap10.0.17134"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "uap10.0.17134": {
+            "projectReferences": {
+              "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\BillMate.Services.ViewModel.csproj": {
+                "projectPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\BillMate.Services.ViewModel.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "uap10.0.17134": {
+          "dependencies": {
+            "Microsoft.CodeAnalysis.FxCopAnalyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.NETCore.UniversalWindowsPlatform": {
+              "target": "Package",
+              "version": "[6.2.9, )"
+            },
+            "Microsoft.Services.Store.SDK": {
+              "target": "Package",
+              "version": "[10.1705.16001, )"
+            },
+            "Microsoft.Toolkit": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Toolkit.Uwp": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI.Animations": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI.Controls": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Toolkit.Uwp.UI.Controls.Graph": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.UI.Xaml": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Win2D.uwp": {
+              "target": "Package",
+              "version": "[1.25.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win10-arm": {
+          "#import": []
+        },
+        "win10-arm-aot": {
+          "#import": []
+        },
+        "win10-x64": {
+          "#import": []
+        },
+        "win10-x64-aot": {
+          "#import": []
+        },
+        "win10-x86": {
+          "#import": []
+        },
+        "win10-x86-aot": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\BillMate.Services.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\BillMate.Services.Data.csproj",
+        "projectName": "BillMate.Services.Data",
+        "projectPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\BillMate.Services.Data.csproj",
+        "packagesPath": "C:\\Users\\zeiktuvai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\zeiktuvai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "uap10.0.17134"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "uap10.0.17134": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "uap10.0.17134": {
+          "dependencies": {
+            "Microsoft.NETCore.UniversalWindowsPlatform": {
+              "target": "Package",
+              "version": "[6.2.10, )"
+            },
+            "SQLite.Net-PCL": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win10-arm": {
+          "#import": []
+        },
+        "win10-arm-aot": {
+          "#import": []
+        },
+        "win10-arm64-aot": {
+          "#import": []
+        },
+        "win10-x64": {
+          "#import": []
+        },
+        "win10-x64-aot": {
+          "#import": []
+        },
+        "win10-x86": {
+          "#import": []
+        },
+        "win10-x86-aot": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\BillMate.Services.ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\BillMate.Services.ViewModel.csproj",
+        "projectName": "BillMate.Services.ViewModel",
+        "projectPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\BillMate.Services.ViewModel.csproj",
+        "packagesPath": "C:\\Users\\zeiktuvai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\zeiktuvai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "uap10.0.17134"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "uap10.0.17134": {
+            "projectReferences": {
+              "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\BillMate.Services.Data.csproj": {
+                "projectPath": "C:\\Users\\zeiktuvai\\Source\\Workspaces\\Cs Projects\\Personal\\Bill Tracker-Backend-Update\\BillMate.Services.Data\\BillMate.Services.Data.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "uap10.0.17134": {
+          "dependencies": {
+            "Microsoft.NETCore.UniversalWindowsPlatform": {
+              "target": "Package",
+              "version": "[6.2.10, )"
+            },
+            "Microsoft.Toolkit.Services": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      },
+      "runtimes": {
+        "win10-arm": {
+          "#import": []
+        },
+        "win10-arm-aot": {
+          "#import": []
+        },
+        "win10-arm64-aot": {
+          "#import": []
+        },
+        "win10-x64": {
+          "#import": []
+        },
+        "win10-x64-aot": {
+          "#import": []
+        },
+        "win10-x86": {
+          "#import": []
+        },
+        "win10-x86-aot": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

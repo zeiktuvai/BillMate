@@ -1,0 +1,2 @@
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\BillMate.Services.Data\obj\Debug\BillMate.Services.Data.csprojAssemblyReference.cache
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\BillMate.Services.Data\obj\Debug\BillMate.Services.Data.csproj.CoreCompileInputs.cache

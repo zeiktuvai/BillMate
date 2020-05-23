@@ -1,0 +1,3 @@
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\Bill Tracker\BillMate.csproj;x64
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\BillMate.Services.Data\BillMate.Services.Data.csproj;x64
+C:\Users\zeiktuvai\Source\Workspaces\Cs Projects\Personal\Bill Tracker-Backend-Update\BillMate.Services.ViewModel\BillMate.Services.ViewModel.csproj;x64
